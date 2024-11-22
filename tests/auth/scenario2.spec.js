@@ -4,6 +4,7 @@ const InventoryPage = require('../../pages/inventoryPage');
 
 import {
     loginPageUrl,
+    errorMessageLocator,
     errorLoginMessage,
 } from '../../config'
 
@@ -22,6 +23,6 @@ test('SCENARIO: 2. User should not be able to access the e-shop inventory withou
 
     await test.step('THEN: user is on login page and sees Error message', async () => {
         await expect(page).toHaveURL(loginPageUrl);
-        await expect(page.locator("[class= 'error-message-container error']")).toHaveText(errorLoginMessage);
+        await expect(page.locator(errorMessageLocator)).toHaveText(errorLoginMessage);
     });
 });

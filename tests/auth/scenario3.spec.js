@@ -2,12 +2,14 @@ const { test, expect } = require('@playwright/test');
 const LoginPage = require('../../pages/loginPage');
 
 import {
-    inventoryPageUrl,
-    standardUser,
+    loginPageUrl,
+    lockedOutUser,
     password,
+    errorMessageLocator,
+    errorLockedOutUserMessage,
 } from '../../config'
 
-test('SCENARIO: 1. User should be able to log in with standard user given the correct credentials', async ({ page }) => {
+test('SCENARIO: 3. User whose access is denied (locked_out_user) should not be able to log in', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await test.step('GIVEN: user is on the login page', async () => {
@@ -15,10 +17,11 @@ test('SCENARIO: 1. User should be able to log in with standard user given the co
     });
 
     await test.step('WHEN: user fill login form and press enter', async () => {
-        await loginPage.login(standardUser, password);
+        await loginPage.login(lockedOutUser, password);
     });
 
     await test.step('THEN: user is redirected to the inventory page', async () => {
-        await expect(page).toHaveURL(inventoryPageUrl);
+        await expect(page).toHaveURL(loginPageUrl);
+        await expect(page.locator(errorMessageLocator)).toHaveText(errorLockedOutUserMessage);
     });
 });
