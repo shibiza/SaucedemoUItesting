@@ -17,7 +17,7 @@ test('SCENARIO: 1. User should be able to log in with standard user given the co
         await loginPage.login(standarduser, password);
     });
 
-    await test.step('THEN: user is on products page', async () => {
+    await test.step('THEN: user is on inventory page', async () => {
         await inventoryPage.openInventoryPage();
     });
 });
