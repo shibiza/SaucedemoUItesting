@@ -10,7 +10,7 @@ class InventoryPage {
 
     // Actions
 
-    // Navigate to the page
+    // Navigate to the inventory page
     async openInventoryPage() {
         await this.page.goto('https://www.saucedemo.com/inventory.html');
     }

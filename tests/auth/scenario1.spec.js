@@ -1,23 +1,24 @@
 const { test, expect } = require('@playwright/test');
-const LoginPage = require('../pages/loginPage');
-const InventoryPage = require('../pages/inventoryPage');
+const LoginPage = require('../../pages/loginPage');
 
-const standarduser = "standard_user";
-const password = "secret_sauce";
+import {
+    inventoryPageUrl,
+    standardUser,
+    password,
+} from '../../config'
 
 test('SCENARIO: 1. User should be able to log in with standard user given the correct credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
-    const inventoryPage = new InventoryPage(page);
 
     await test.step('GIVEN: user is on the base page', async () => {
         await loginPage.openLoginPage();
     });
 
     await test.step('WHEN: user fill login form and press enter', async () => {
-        await loginPage.login(standarduser, password);
+        await loginPage.login(standardUser, password);
     });
 
-    await test.step('THEN: user is on inventory page', async () => {
-        await inventoryPage.openInventoryPage();
+    await test.step('THEN: user is redirected to the inventory page', async () => {
+        await expect(page).toHaveURL(inventoryPageUrl);
     });
 });
