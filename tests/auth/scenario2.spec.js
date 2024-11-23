@@ -4,6 +4,7 @@ const InventoryPage = require('../../pages/inventoryPage');
 
 import {
     loginPageUrl,
+    inventoryPageUrl,
     errorMessageLocator,
     errorLoginMessage,
 } from '../../config'
@@ -12,8 +13,9 @@ test('SCENARIO: 2. User should not be able to access the e-shop inventory withou
     const loginPage = new LoginPage(page);
     const inventoryPage = new InventoryPage(page);
 
-    await test.step('GIVEN: user tries to open inventory page directly - without loggin in on a login page', async () => {
+    await test.step('GIVEN: unlogged user tries to open inventory page directly - without loggin in on a login page', async () => {
         await inventoryPage.openInventoryPage();
+       
     });
 
     await test.step('WHEN: user is redirected to login page', async () => {
@@ -23,6 +25,7 @@ test('SCENARIO: 2. User should not be able to access the e-shop inventory withou
 
     await test.step('THEN: user is on login page and sees Error message', async () => {
         await expect(page).toHaveURL(loginPageUrl);
+        await expect(page).not.toHaveURL(inventoryPageUrl);
         await expect(page.locator(errorMessageLocator)).toHaveText(errorLoginMessage);
     });
 });

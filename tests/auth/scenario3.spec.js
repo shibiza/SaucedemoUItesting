@@ -20,7 +20,7 @@ test('SCENARIO: 3. User whose access is denied (locked_out_user) should not be a
         await loginPage.login(lockedOutUser, password);
     });
 
-    await test.step('THEN: user is redirected to the inventory page', async () => {
+    await test.step('THEN: user is still on login page', async () => {
         await expect(page).toHaveURL(loginPageUrl);
         await expect(page.locator(errorMessageLocator)).toHaveText(errorLockedOutUserMessage);
     });

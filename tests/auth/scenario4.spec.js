@@ -4,6 +4,8 @@ const InventoryPage = require('../../pages/inventoryPage');
 
 import {
     loginPageUrl,
+    inventoryPageUrl,
+    usernameInput,
     standardUser,
     password,
 } from '../../config'
@@ -14,6 +16,7 @@ test('SCENARIO: 4. User should be logged out once Logout button is pressed', asy
 
     await test.step('GIVEN: registered user is on the inventory page', async () => {
         await loginPage.openLoginPage();
+        await expect (page.locator(usernameInput)).toBeEnabled();
         await loginPage.login(standardUser, password);
     });
 
@@ -24,5 +27,6 @@ test('SCENARIO: 4. User should be logged out once Logout button is pressed', asy
 
     await test.step('THEN: user is redirected to the login page', async () => {
       await expect(page).toHaveURL(loginPageUrl);
+      await expect(page).not.toHaveURL(inventoryPageUrl);
     });
 });

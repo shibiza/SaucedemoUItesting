@@ -8,8 +8,24 @@ export const lockedOutUser = "locked_out_user";
 export const password = "secret_sauce";
 
 //locators login page:
+export const usernameInput = '[data-test="username"]';
+export const passwordInput = '[data-test="password"]';
+export const loginButton = '[data-test="login-button"]';
 export const errorMessageLocator = "[class= 'error-message-container error']";
-export const swagLabLoginPageLogo = "[class= 'login_logo']";
+//export const swagLabLoginPageLogo = page.getByText('Swag Labs');
+
+//locators inventory page:
+export const burgerMenue = 'button:has-text("Open Menu")';
+//export const burgerMenue = '#react-burger-menu-btn';  backup option
+//export const burgerMenue = 'button[role="button"]';  backup option
+export const logoutButton = '#logout_sidebar_link';
+//export const logoutButton = '#logout_sidebar_link';  spare option
+//export const logoutButton = 'a:has-text("Logout")';  spare option
+// <a id="logout_sidebar_link" class="bm-item menu-item" href="#" data-test="logout-sidebar-link" style="display: block;">Logout</a>
+
+
+
+export const cartIcon = '[data-test="shopping-cart-link"]';
 
 //locators all pages:
 export const swagLabsLogo = "[class= 'login_logo']"; //logo on all pages exept login page

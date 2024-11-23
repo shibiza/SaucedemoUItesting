@@ -1,17 +1,27 @@
-class LoginPage {
+import BasePage from './basePage';
+
+import {
+    loginPageUrl,
+    usernameInput,
+    passwordInput,
+    loginButton,
+    errorMessageLocator,
+    } from '../config';
+
+class LoginPage extends BasePage {
   
   constructor(page) {
-      this.page = page;
-      this.usernameInput = page.locator('[data-test="username"]');
-      this.passwordInput = page.locator('[data-test="password"]');
-      this.loginButton = page.locator('[data-test="login-button"]');
-      this.errorMessage = page.locator('[data-test="error"]');
-      this.loginPageUrl = 'https://www.saucedemo.com/';
+      super(page);
+      this.loginPageUrl = loginPageUrl;
+      this.usernameInput = page.locator(usernameInput);
+      this.passwordInput = page.locator(passwordInput);
+      this.loginButton = page.locator(loginButton);
+      this.errorMessage = page.locator(errorMessageLocator);
   }
 
   async openLoginPage() {
-      await this.page.goto(this.loginPageUrl);
-  }
+    await this.openUrl(loginPageUrl);
+}
 
   async login(username, password) {
       await this.usernameInput.fill(username);
