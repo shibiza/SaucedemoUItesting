@@ -15,7 +15,7 @@ export const errorMessageLocator = "[class= 'error-message-container error']";
 //export const swagLabLoginPageLogo = page.getByText('Swag Labs');
 
 //locators inventory page:
-export const burgerMenue = 'button:has-text("Open Menu")';
+export const burgerMenue = '#react-burger-menu-btn'; //'button:has-text("Open Menu")';
 //export const burgerMenue = '#react-burger-menu-btn';  backup option
 //export const burgerMenue = 'button[role="button"]';  backup option
 export const logoutButton = '#logout_sidebar_link';
