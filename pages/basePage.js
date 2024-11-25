@@ -7,21 +7,8 @@ class BasePage {
         return await this.page.goto(url, {waitUntil: 'networkidle'});
     }
 
-    async elementToHasText(element){
-
-        const elementIsVisible = await element.toBeVisible();
-        if(!elementIsVisible) {
-            throw new Error(`💀 element is not visible`);
-        }
-
-        const elementIsEnabled = await element.toBeEnabled();
-        if(!elementIsEnabled) {
-            throw new Error(`📛 element is not enabled`);
-        }
-
-        if(!elementIsVisible && !elementIsEnabled) {
-            throw new Error(`⚡element is not visible and not enabled`);
-        }
+    async clickElement(elementLocator){
+       await elementLocator.click(); 
     }
 }
 

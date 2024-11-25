@@ -23,9 +23,6 @@ test('SCENARIO: 1. User should be able to log in with standard user given the co
     });
 
     await test.step('WHEN: user fill login form and press enter', async () => {
-        //polymorphism: 
-     //   await expect loginPage.elementToHasText(loginButton);
-     //   await expect(page.loginButton).elementToBeClickable(loginPage.loginButton);
         await loginPage.login(standardUser, password);
     });
 
