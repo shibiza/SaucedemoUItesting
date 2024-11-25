@@ -32,6 +32,14 @@ class LoginPage extends BasePage {
   async isErrorMessageVisible() {
       return await this.errorMessage.isVisible();
   }
+
+ async elementToHasText(element){
+    const loginBtnToHaveText = await element.textContent('Login');
+    if(!loginBtnToHaveText){
+        throw new Error(`The Login button does not have "Login" text`)
+    }
+    await super.elementToHasText(element);
+ }
 }
 
 module.exports = LoginPage;
