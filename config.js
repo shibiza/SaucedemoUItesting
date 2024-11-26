@@ -12,7 +12,6 @@ export const usernameInput = '[data-test="username"]';
 export const passwordInput = '[data-test="password"]';
 export const loginButton = '[data-test="login-button"]';
 export const errorMessageLocator = "[class= 'error-message-container error']";
-//export const swagLabLoginPageLogo = page.getByText('Swag Labs');
 
 //locators inventory page:
 export const burgerMenue = '[id="react-burger-menu-btn"]'; 
@@ -22,12 +21,12 @@ export const productSearchContainer = '[data-test="product-sort-container"]';
 export const itemName = "[class='inventory_item_name']"; // <div class="inventory_item_name " data-test="inventory-item-name">Test.allTheThings() T-Shirt (Red)</div>
 export const itemPrice = "[class='inventory_item_price']";
 
-export const cartIcon = '[data-test="shopping-cart-link"]';
+// scenario #6:
+export const productName = '[data-test="inventory-item-name"]'; //<div class="inventory_item_name " data-test="inventory-item-name">Sauce Labs Backpack</div>
+export const productDescription = '[data-test="inventory-item-desc"]'; //<div class="inventory_item_desc" data-test="inventory-item-desc">carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.</div>
+export const productPrice = '[data-test="inventory-item-price"]'; //<div class="inventory_item_price" data-test="inventory-item-price">$29.99</div>
+export const productImage = '[data-test="inventory-item-sauce-labs-backpack-img"]';    //<img alt="Sauce Labs Backpack" class="inventory_item_img" src="/static/media/sauce-backpack-1200x1500.0a0b85a3.jpg" data-test="inventory-item-sauce-labs-backpack-img">
 
-//locators all pages:
-export const swagLabsLogo = "[class= 'login_logo']"; //logo on all pages exept login page
- 
 //texts:
-export const titleSwagLabs = 'Swag Labs';
 export const errorLoginMessage = "Epic sadface: You can only access '/inventory.html' when you are logged in.";
 export const errorLockedOutUserMessage = "Epic sadface: Sorry, this user has been locked out.";

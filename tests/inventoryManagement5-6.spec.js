@@ -8,15 +8,23 @@ import {
     usernameInput,
     standardUser,
     password,
-    loginButton,
-    productSearchContainer,
-    itemNames,
-    itemPrices,
+       
 } from '../config';
+
+// Variables for the backpack
+const nameOfBackpack = 'Sauce Labs Backpack';
+const descriptionOfProductBackpack = 'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.';
+const priceOfProductBackpack = '$29.99';
+const imgOfProductBackpack = '/static/media/sauce-backpack-1200x1500.0a0b85a3.jpg';
+
 
 test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
+
+  //  await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
     await loginPage.openLoginPage();
+
+    await expect(page).toHaveURL(loginPageUrl);      
     await expect (page.locator(usernameInput)).toBeEnabled();
     await loginPage.login(standardUser, password);
  });
@@ -35,7 +43,8 @@ test('SCENARIO: 5.User should be able to filter the inventory according to the o
     let filteredProductPricesHiLoWithoutDollar;
 
     await test.step('GIVEN: Registered user is on the inventory page', async () => {
-       productsNames = await inventoryPage.itemNames.allInnerTexts(); //Promise<Array<string>>
+        await expect(page).toHaveURL(inventoryPageUrl);      
+        productsNames = await inventoryPage.itemNames.allInnerTexts(); //Promise<Array<string>>
     });
 
     await test.step('WHEN: user selects a filter option from the dropdown menu and filter them by their names from A to Z', async () => {
@@ -59,7 +68,7 @@ test('SCENARIO: 5.User should be able to filter the inventory according to the o
         filteredProductsNamesZA = await inventoryPage.itemNames.allInnerTexts(); 
     });
 
-    await test.step('THEN: The inventory is filtered according to the chosen option = A to Z', async () => {
+    await test.step('THEN: The inventory is filtered according to the chosen option = Z to A', async () => {
         productsNames.reverse();
         expect(filteredProductsNamesZA).toEqual(productsNames);
         console.log(' products were filtered in descending alphabetical order')
@@ -84,7 +93,7 @@ test('SCENARIO: 5.User should be able to filter the inventory according to the o
 
         expect(filteredProductPricesLoHiWithoutDollar).toEqual(productsPricesWithoutDollar);
         console.log(' products were filtered with their prices from low to high');
-    });
+    });``
 
     await test.step('WHEN: user selects a filter option from the dropdown menu and filter them by their prices from high to low', async () => {
         await inventoryPage.filteringDropdownCklick();
@@ -104,18 +113,32 @@ test('SCENARIO: 6.User should see the correct product details such as image, pro
     const inventoryPage = new InventoryPage(page);
 
     await test.step('GIVEN: user is on the inventory page', async () => {
-     // User is successfully logged in and navigated to the inventory page.
-// All product tiles/cards are visible.
+        await expect(page).toHaveURL(inventoryPageUrl);
     });
 
-    await test.step('WHEN: user views the details of the products listed in the inventory', async () => {
-  // The product tiles/cards display images, names, descriptions, and prices.
-
+    await test.step('WHEN: user views all the products listed in the inventory', async () => {
+        await inventoryPage.filteringDropdownCklick();        // we need to filter products so the backpack will be the first item
+        await inventoryPage.productSearchContainer.selectOption('az'); 
     });
 
-    await test.step('THEN: user is redirected to the inventory page', async () => {
-     // The product details should be correct and fully displayed
+    await test.step('THEN: user sees that the product details (backpack) should be correct and fully displayed', async () => {
+       
+        const actualName = await inventoryPage.getFirstProductName();
+        const actualDescription = await inventoryPage.getFirstProductDescription();
+        const actualPrice = await inventoryPage.getFirstProductPrice();
+        const actualImageSrc = await inventoryPage.getFirstProductImage();
+    
+         console.log({
+            name: actualName,
+            description: actualDescription,
+            price: actualPrice,
+            image: actualImageSrc,
+        });
 
+        expect(actualName).toBe(nameOfBackpack);
+        expect(actualDescription).toBe(descriptionOfProductBackpack);
+        expect(actualPrice).toBe(priceOfProductBackpack);
+        expect(actualImageSrc).toBe(imgOfProductBackpack);
 
     });
 });
