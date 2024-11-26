@@ -3,6 +3,7 @@ const LoginPage = require('../pages/loginPage');
 const InventoryPage = require('../pages/inventoryPage');
 const CartPage = require('../pages/cartPage');
 
+import exp from 'constants';
 import {
     loginPageUrl,
     inventoryPageUrl,
@@ -62,5 +63,23 @@ test('SCENARIO: 7.  User should see the added product in their cart.', async ({ 
         expect(actualName).toBe(nameOfBackpack);
         expect(actualDescription).toBe(descriptionOfProductBackpack);
         expect(actualPrice).toBe(priceOfProductBackpack);
+    });
+});
+
+test('SCENARIO: 8. User should see the cart icon update accordingly when adding a product to the cart.', async ({ page }) => {
+    const inventoryPage = new InventoryPage(page);
+ 
+    await test.step('GIVEN: user is on the inventory page', async () => {
+        await expect(page).toHaveURL(inventoryPageUrl);
+    });
+    
+    await test.step('WHEN: when user cklicks on "add to cart" button for a backpack', async () => {
+      await inventoryPage.addToCartBackpackCklick();   
+    });
+    
+    await test.step('THEN: user sees that there is "1" product near the car item is displayed', async () => {
+       const actualQuantityOfProducts = await inventoryPage.getCartIconQuantityProducts();
+       console.log('quantity of actual added products is: ', actualQuantityOfProducts);
+       expect(actualQuantityOfProducts).toBe("1");
     });
 });

@@ -76,6 +76,9 @@ class InventoryPage extends BasePage {
     async addToCartBackpackCklick() {
         await this.clickElement(this.addToCartBackpackButton);
     } 
+    async getCartIconQuantityProducts(){
+        return this.cartIcon.innerText();
+    }
 
 }
 
