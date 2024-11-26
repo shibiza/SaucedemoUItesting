@@ -15,13 +15,9 @@ export const errorMessageLocator = "[class= 'error-message-container error']";
 //export const swagLabLoginPageLogo = page.getByText('Swag Labs');
 
 //locators inventory page:
-//export const burgerMenue = '#react-burger-menu-btn'; //'button:has-text("Open Menu")';
-//export const burgerMenue = '#react-burger-menu-btn';  backup option
-export const burgerMenue = 'button[role="button"]'; // backup option
+export const burgerMenue = '[id="react-burger-menu-btn"]'; 
 export const logoutButton = '#logout_sidebar_link';
-//export const logoutButton = '#logout_sidebar_link';  spare option
-//export const logoutButton = 'a:has-text("Logout")';  spare option
-// <a id="logout_sidebar_link" class="bm-item menu-item" href="#" data-test="logout-sidebar-link" style="display: block;">Logout</a>
+
 export const productSearchContainer = '[data-test="product-sort-container"]';
 export const itemName = "[class='inventory_item_name']"; // <div class="inventory_item_name " data-test="inventory-item-name">Test.allTheThings() T-Shirt (Red)</div>
 export const itemPrice = "[class='inventory_item_price']";

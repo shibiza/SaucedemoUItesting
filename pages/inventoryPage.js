@@ -17,7 +17,7 @@ class InventoryPage extends BasePage {
     constructor(page) {
         super(page);
         this.inventoryPageUrl = inventoryPageUrl;
-        this.burgerMenue = page.getbyRole(burgerMenue); //Error while parsing selector `button:has-text("Open Menu")` - unexpected symbol ":" at position 6
+        this.burgerMenue = page.locator(burgerMenue); //Error while parsing selector `button:has-text("Open Menu")` - unexpected symbol ":" at position 6
         this.logoutButton = page.locator(logoutButton);
         this.cartIcon = page.locator(cartIcon);
         this.productSearchContainer = page.locator(productSearchContainer);
