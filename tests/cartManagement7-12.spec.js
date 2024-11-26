@@ -22,8 +22,8 @@ const priceOfProductBackpack = '$29.99';
 test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-  //await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
-   await loginPage.openLoginPage();
+  await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
+ // await loginPage.openLoginPage();
 
     await expect(page).toHaveURL(loginPageUrl);      
     await expect (page.locator(usernameInput)).toBeEnabled();
@@ -41,7 +41,6 @@ test('SCENARIO: 7.  User should see the added product in their cart.', async ({ 
     
     await test.step('WHEN: when user cklicks on "add to cart" button for a backpack', async () => {
       await inventoryPage.addToCartBackpackCklick();   
-
     });
     
     await test.step('AND: user goes to cart page', async () => {
@@ -81,5 +80,33 @@ test('SCENARIO: 8. User should see the cart icon update accordingly when adding 
        const actualQuantityOfProducts = await inventoryPage.getCartIconQuantityProducts();
        console.log('quantity of actual added products is: ', actualQuantityOfProducts);
        expect(actualQuantityOfProducts).toBe("1");
+    });
+});
+
+test('SCENARIO: 9. User should be able to remove the added product on the cart page.', async ({ page }) => {
+    const inventoryPage = new InventoryPage(page);
+    const cartPage = new CartPage(page);
+
+    await test.step('GIVEN: user is on the inventory page', async () => {
+        await expect(page).toHaveURL(inventoryPageUrl);
+    });
+    
+    await test.step('WHEN: when user cklicks on "add to cart" button for a backpack', async () => {
+      await inventoryPage.addToCartBackpackCklick();   
+    });
+    
+    await test.step('AND: user goes to the cart page', async () => {
+       await inventoryPage.cartIconClick();
+       await expect(page).toHaveURL(cartPageUrl);
+    });
+
+    await test.step('AND: User clicks "Remove" button on the cart page', async () => {
+        await cartPage.removeButtonCklick();
+     });
+
+    await test.step('THEN: user sees that previously added backpack is removed', async () => {
+        await expect(cartPage.addedProductName).toBeHidden();
+        await expect(cartPage.addedProductDescription).toBeHidden();
+        await expect(cartPage.addedProductPrice).toBeHidden();
     });
 });

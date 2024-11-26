@@ -32,6 +32,7 @@ export const productImage = '[data-test="inventory-item-sauce-labs-backpack-img"
 
 // cart page:
 export const checkoutButton = '[data-test="checkout"]';
+export const removeButton = '[data-test="remove-sauce-labs-backpack"]';
 // scenario #7: 
 export const addedProductName = '[data-test="item-4-title-link"]'; 
 export const addedProductDescription = '[data-test="inventory-item-desc"]'; 
