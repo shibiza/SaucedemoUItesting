@@ -2,6 +2,7 @@
 export const loginPageUrl = 'https://www.saucedemo.com/';
 export const inventoryPageUrl = 'https://www.saucedemo.com/inventory.html';
 export const cartPageUrl = 'https://www.saucedemo.com/cart.html';
+export const productPageUrl = 'https://www.saucedemo.com/inventory-item.html?id=4';
 
 //users and password:
 export const standardUser = "standard_user";
@@ -23,6 +24,7 @@ export const productSearchContainer = '[data-test="product-sort-container"]';
 export const itemName = "[class='inventory_item_name']"; // <div class="inventory_item_name " data-test="inventory-item-name">Test.allTheThings() T-Shirt (Red)</div>
 export const itemPrice = "[class='inventory_item_price']";
 export const addToCartBackpackButton = '[data-test="add-to-cart-sauce-labs-backpack"]'; //<button class="btn btn_primary btn_small btn_inventory " data-test="add-to-cart-sauce-labs-backpack" id="add-to-cart-sauce-labs-backpack" name="add-to-cart-sauce-labs-backpack">Add to cart</button>
+export const productNameBackpack = '[data-test="item-4-title-link"]';
 
 // scenario #6: attention!!! some of them are harcoded variables!!!
 export const productName = '[data-test="inventory-item-name"]'; //<div class="inventory_item_name " data-test="inventory-item-name">Sauce Labs Backpack</div>
@@ -33,10 +35,14 @@ export const productImage = '[data-test="inventory-item-sauce-labs-backpack-img"
 // cart page:
 export const checkoutButton = '[data-test="checkout"]';
 export const removeButton = '[data-test="remove-sauce-labs-backpack"]';
+export const continueShopping = '[data-test="continue-shopping"]';
 // scenario #7: 
 export const addedProductName = '[data-test="item-4-title-link"]'; 
 export const addedProductDescription = '[data-test="inventory-item-desc"]'; 
 export const addedProductPrice = '[data-test="inventory-item-price"]'; 
+
+//product page (backpack):
+export const removeButtonOnProductPage = '[data-test="remove"]';
 
 //texts:
 export const errorLoginMessage = "Epic sadface: You can only access '/inventory.html' when you are logged in.";

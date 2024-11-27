@@ -2,8 +2,8 @@ const { test, expect } = require('@playwright/test');
 const LoginPage = require('../pages/loginPage');
 const InventoryPage = require('../pages/inventoryPage');
 const CartPage = require('../pages/cartPage');
+const ProductPage = require('../pages/productPage');
 
-import exp from 'constants';
 import {
     loginPageUrl,
     inventoryPageUrl,
@@ -11,6 +11,8 @@ import {
     usernameInput,
     standardUser,
     password,
+    productPageUrl,
+    removeButtonOnProductPage,
            
 } from '../config';
 
@@ -22,8 +24,8 @@ const priceOfProductBackpack = '$29.99';
 test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-  await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
- // await loginPage.openLoginPage();
+   // await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
+    await loginPage.openLoginPage();
 
     await expect(page).toHaveURL(loginPageUrl);      
     await expect (page.locator(usernameInput)).toBeEnabled();
@@ -108,5 +110,78 @@ test('SCENARIO: 9. User should be able to remove the added product on the cart p
         await expect(cartPage.addedProductName).toBeHidden();
         await expect(cartPage.addedProductDescription).toBeHidden();
         await expect(cartPage.addedProductPrice).toBeHidden();
+    });
+});
+
+test('SCENARIO: 10. User should be able to remove the added product from cart on the inventory page.', async ({ page }) => {
+    const inventoryPage = new InventoryPage(page);
+    
+    await test.step('GIVEN: user is on the inventory page', async () => {
+        await expect(page).toHaveURL(inventoryPageUrl);
+    });
+    
+    await test.step('WHEN: when user cklicks on "add to cart" button for a backpack', async () => {
+      await inventoryPage.addToCartBackpackCklick();   
+      const actualQuantityOfProducts = await inventoryPage.getCartIconQuantityProducts();
+      console.log('✅ quantity of actual added products is: ', actualQuantityOfProducts);
+      expect(actualQuantityOfProducts).toBe("1");
+    });
+       
+    await test.step('AND: User clicks "Remove" button on the inventory page', async () => {
+        await inventoryPage.removeButtonCklick();
+     });
+
+    await test.step('THEN: user sees that previously added backpack is removed from cart', async () => {
+        const actualQuantityOfProducts = await inventoryPage.getCartIconQuantityProducts();
+        console.log('✅ quantity of actual added products is: ', actualQuantityOfProducts);
+    });
+});
+
+test('SCENARIO: 11. User should be able to remove the added product from cart on the specific product page.', async ({ page }) => {
+    const inventoryPage = new InventoryPage(page);
+    const productPage = new ProductPage(page);
+    
+    await test.step('GIVEN: user is on the inventory page', async () => {
+        await expect(page).toHaveURL(inventoryPageUrl);
+    });
+    
+    await test.step('WHEN: when user cklicks on "add to cart" button for a backpack', async () => {
+      await inventoryPage.addToCartBackpackCklick();   
+      const actualQuantityOfProducts1 = await inventoryPage.getCartIconQuantityProducts();
+      console.log('✅ quantity of actual added products is: ', actualQuantityOfProducts1);
+      expect(actualQuantityOfProducts1).toBe("1");
+    });
+       
+    await test.step('AND: User navigates to the backpack page', async () => {
+        await inventoryPage.navigateToProductPage();
+        await expect(page).toHaveURL(productPageUrl);
+     });
+
+     await test.step('AND: User press "Remove" button to remove the backpack from their cart', async () => {
+        await expect (page.locator(removeButtonOnProductPage)).toBeEnabled();
+        await productPage.removeButtonClick();
+     });
+
+    await test.step('THEN: user sees that the backpack is removed from cart', async () => {
+        const actualQuantityOfProducts0 = await productPage.getCartIconQuantityProducts();
+        console.log('✅ quantity of actual added products is: ', actualQuantityOfProducts0);
+        expect(actualQuantityOfProducts0).toBe("");
+    });
+});
+
+test('SCENARIO: 12. User should be able to continue shopping from the cart page.', async ({ page }) => {
+    const cartPage = new CartPage(page);
+
+    await test.step('GIVEN: user is on the cart page', async () => {
+        await cartPage.openCartPage();
+        await expect(page).toHaveURL(cartPageUrl);
+    });
+    
+    await test.step('WHEN: when user cklicks on "Continue shopping" button', async () => {
+        await cartPage.continueShoppingClick();   
+    });
+    
+    await test.step('THEN: user is redirected to inventory page', async () => {
+        await expect(page).toHaveURL(inventoryPageUrl);
     });
 });

@@ -7,6 +7,7 @@ import {
     addedProductDescription,
     addedProductPrice,
     removeButton,
+    continueShopping,
     
     } from '../config';
 
@@ -20,6 +21,7 @@ class CartPage extends BasePage {
         this.addedProductDescription = page.locator(addedProductDescription);
         this.addedProductPrice = page.locator(addedProductPrice);
         this.removeButton = page.locator(removeButton);
+        this.continueShopping = page.locator(continueShopping);
            
     }
 
@@ -31,7 +33,9 @@ class CartPage extends BasePage {
     async checkoutClick() {
         await this.clickElement(this.checkoutButton);
     }
-
+    async continueShoppingClick() {
+        await this.clickElement(this.continueShopping);
+    }
      //scenario #7:
      async getAddedProductName(){
         return await this.addedProductName.innerText();

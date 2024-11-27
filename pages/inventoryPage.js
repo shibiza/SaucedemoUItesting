@@ -9,6 +9,8 @@ import {
     itemName,
     itemPrice,
     addToCartBackpackButton,
+    removeButton,
+    productNameBackpack,
 
     productName,
     productDescription,
@@ -28,6 +30,8 @@ class InventoryPage extends BasePage {
         this.itemNames = page.locator(itemName);
         this.itemPrices = page.locator(itemPrice);
         this.addToCartBackpackButton = page.locator(addToCartBackpackButton);
+        this.removeButton = page.locator(removeButton);
+        this.productNameBackpack = page.locator(productNameBackpack);
 
             //scenario #6:
         this.productName = page.locator(productName);
@@ -58,6 +62,14 @@ class InventoryPage extends BasePage {
         await this.clickElement(this.cartIcon);
     }
 
+    async removeButtonCklick(){
+        await this.clickElement(this.removeButton);
+    }
+
+    async navigateToProductPage(){
+        await this.clickElement(this.productNameBackpack);
+    }
+
     //scenario #6:
     async getFirstProductName(){
         return await this.productName.nth(0).innerText();
@@ -79,7 +91,7 @@ class InventoryPage extends BasePage {
     async getCartIconQuantityProducts(){
         return this.cartIcon.innerText();
     }
-
+    
 }
 
 module.exports = InventoryPage;
