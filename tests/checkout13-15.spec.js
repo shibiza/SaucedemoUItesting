@@ -40,10 +40,12 @@ test.beforeEach(async ({ page }) => {
 
 test('SCENARIO: 13. User should see the checkout overview with details such as payment, shipping info, price total', async ({ page }) => {
     const inventoryPage = new InventoryPage(page);
-    const checkoutPage = new CheckoutPage(page);
     const cartPage = new CartPage(page);
+    const checkoutPage = new CheckoutPage(page);
 
     await test.step('GIVEN: user added to cart backpack and on the cart page clicks chekout button', async () => {
+        await inventoryPage.filteringDropdownCklick();        // we need to filter products so the backpack will be the first item
+        await inventoryPage.productSearchContainer.selectOption('az'); 
         await inventoryPage.addToCartBackpackCklick();   
         await inventoryPage.cartIconClick();
         await expect(page).toHaveURL(cartPageUrl);
