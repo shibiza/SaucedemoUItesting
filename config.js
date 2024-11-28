@@ -73,7 +73,17 @@ export const nameOfProduct = '[data-test="item-4-title-link"]';
 export const descriptionOfProduct ='[data-test="inventory-item-desc"]';
 export const priceOfProduct = '[data-test="inventory-item-price"]';
 
+export const errorMessageCheckoutLocator = '[data-test="error"]';
+export const finishButton = '[data-test="finish"]';
+export const completeOrderHeaderLocator = '[data-test="complete-header"]';
+export const completeOrderWholeLocator = '[data-test="complete-text"]';
 
-//texts:
+
+// error messages texts:
 export const errorLoginMessage = "Epic sadface: You can only access '/inventory.html' when you are logged in.";
 export const errorLockedOutUserMessage = "Epic sadface: Sorry, this user has been locked out.";
+export const errorFirstNameRequired = 'Error: First Name is required';
+export const errorLastNameRequired = 'Error: Last Name is required';
+export const errorPostalCodeRequired = 'Error: Postal Code is required';
+export const completeOrderHeaderText = 'Thank you for your order!';
+export const completeOrderWholeText= 'Your order has been dispatched, and will arrive just as fast as the pony can get there!';

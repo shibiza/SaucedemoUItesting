@@ -14,7 +14,10 @@ import {
     priceOfProduct,
     paymentInfoLocator,
     shippingInfoLocator,
-    
+    errorMessageCheckoutLocator,
+    finishButton,
+    completeOrderHeaderLocator,
+    completeOrderWholeLocator,
     } from '../config';
 
 class CheckoutPage extends BasePage {
@@ -34,17 +37,24 @@ class CheckoutPage extends BasePage {
         this.priceOfProduct = page.locator(priceOfProduct);
         this.paymentInfoLocator = page.locator(paymentInfoLocator);
         this.shippingInfoLocator = page.locator(shippingInfoLocator);
+        this.errorMessageCheckoutLocator = page.locator(errorMessageCheckoutLocator);
+        this.finishButton = page.locator(finishButton);
+        this.completeOrderHeaderLocator = page.locator(completeOrderHeaderLocator);
+        this.completeOrderWholeLocator = page.locator(completeOrderWholeLocator);
     }
 
-    async openCheckoutPageStepOneUrl() {
-        await this.openUrl(checkoutPageStepOneUrl);
-    }
+    // async openCheckoutPageStepOneUrl() {
+    //     await this.openUrl(checkoutPageStepOneUrl);
+    // }
 
     async checkoutInputCredentials(firstName,lastName, zipCode) {
         await this.firstNameInput.fill(firstName);
         await this.lastNameInput.fill(lastName);
         await this.zipCodeInput.fill(zipCode);
         await this.clickElement(this.continueCheckoutButton);
+    }
+    async finishButtonCklick() {
+        await this.clickElement(this.finishButton);
     }
    
     // async getProductInfo() {
@@ -78,6 +88,22 @@ class CheckoutPage extends BasePage {
             paymentInfo: this.paymentInfoLocator,
             shippingInfo: this.shippingInfoLocator,
         };
+    }
+
+    async isErrorMessageVisible() {
+        return await this.errorMessageCheckoutLocator.isVisible();
+    }
+    async getErrorMessageInfo() {
+        const errorMessageText = await this.errorMessageCheckoutLocator.innerText();
+        return errorMessageText;
+    }
+    async getThankYouMessage() {
+        const headerText = await this.completeOrderHeaderLocator.innerText();
+         return headerText;
+    }
+    async getOrderDispatchedMessage(){
+        const wholeText = await this.completeOrderWholeLocator.innerText();
+        return wholeText;
     }
 }
 
