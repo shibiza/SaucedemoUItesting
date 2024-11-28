@@ -43,10 +43,6 @@ class CheckoutPage extends BasePage {
         this.completeOrderWholeLocator = page.locator(completeOrderWholeLocator);
     }
 
-    // async openCheckoutPageStepOneUrl() {
-    //     await this.openUrl(checkoutPageStepOneUrl);
-    // }
-
     async checkoutInputCredentials(firstName,lastName, zipCode) {
         await this.firstNameInput.fill(firstName);
         await this.lastNameInput.fill(lastName);
@@ -82,8 +78,6 @@ class CheckoutPage extends BasePage {
     }
 
     async getPaymentInfo() {
-        // const paymentInfo = await this.paymentInfoLocator.innerText();
-        // const shippingInfo = await this.shippingInfoLocator.innerText()
         return {
             paymentInfo: this.paymentInfoLocator,
             shippingInfo: this.shippingInfoLocator,

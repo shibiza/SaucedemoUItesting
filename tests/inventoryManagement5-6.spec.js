@@ -8,20 +8,14 @@ import {
     usernameInput,
     standardUser,
     password,
-       
-} from '../config';
-
-// Variables for the backpack
-const nameOfBackpack = 'Sauce Labs Backpack';
-const descriptionOfProductBackpack = 'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.';
-const priceOfProductBackpack = '$29.99';
-const imgOfProductBackpack = '/static/media/sauce-backpack-1200x1500.0a0b85a3.jpg';
-
+    backpackInfo,
+    imgOfProductBackpack,
+    } from '../config';
 
 test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-  //  await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
+    //  await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
     await loginPage.openLoginPage();
 
     await expect(page).toHaveURL(loginPageUrl);      
@@ -135,9 +129,9 @@ test('SCENARIO: 6.User should see the correct product details such as image, pro
             image: actualImageSrc,
         });
 
-        expect(actualName).toBe(nameOfBackpack);
-        expect(actualDescription).toBe(descriptionOfProductBackpack);
-        expect(actualPrice).toBe(priceOfProductBackpack);
+        expect(actualName).toBe(backpackInfo.nameOfBackpack);
+        expect(actualDescription).toBe(backpackInfo.descriptionOfProductBackpack);
+        expect(actualPrice).toBe(backpackInfo.priceOfProductBackpack);
         expect(actualImageSrc).toBe(imgOfProductBackpack);
 
     });

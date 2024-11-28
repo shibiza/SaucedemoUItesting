@@ -24,13 +24,12 @@ import {
     errorPostalCodeRequired,
     completeOrderHeaderText,
     completeOrderWholeText,
-       
-} from '../config';
+    } from '../config';
 
 test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-   // await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
+    // await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
     await loginPage.openLoginPage();
 
     await expect(page).toHaveURL(loginPageUrl);      
@@ -149,26 +148,26 @@ test('SCENARIO: 14C. User should get notified when they fail to enter any of the
     const checkoutPage = new CheckoutPage(page);
 
     await test.step('GIVEN: user added to cart backpack and on the cart page clicks chekout button', async () => {
-    await inventoryPage.filteringDropdownCklick();        // we need to filter products so the backpack will be the first item
-    await inventoryPage.productSearchContainer.selectOption('az'); 
-    await inventoryPage.addToCartBackpackCklick();   
-    await inventoryPage.cartIconClick();
-    await expect(page).toHaveURL(cartPageUrl);
-    await cartPage.checkoutClick();
-    await expect(page).toHaveURL(checkoutPageStepOneUrl);
+        await inventoryPage.filteringDropdownCklick();        // we need to filter products so the backpack will be the first item
+        await inventoryPage.productSearchContainer.selectOption('az'); 
+        await inventoryPage.addToCartBackpackCklick();   
+        await inventoryPage.cartIconClick();
+        await expect(page).toHaveURL(cartPageUrl);
+        await cartPage.checkoutClick();
+        await expect(page).toHaveURL(checkoutPageStepOneUrl);
     });
     
     await test.step('WHEN: user enters only firstName and lastName and dont enter zipCode on "checkout: your information" page and tries to press continue button', async () => {
-    checkoutPage.checkoutInputCredentials(firstNameBuyer, lastNameBuyer, "");
+        checkoutPage.checkoutInputCredentials(firstNameBuyer, lastNameBuyer, "");
     });
 
     await test.step('THEN: user sees an error message occurs ', async () => {
-    await expect(page).toHaveURL(checkoutPageStepOneUrl);
-    await checkoutPage.isErrorMessageVisible();
+        await expect(page).toHaveURL(checkoutPageStepOneUrl);
+        await checkoutPage.isErrorMessageVisible();
 
-    const actualErrorMessage = await checkoutPage.getErrorMessageInfo();
-    console.log('⚡ actual error message is ', actualErrorMessage);
-    await expect(actualErrorMessage).toBe(errorPostalCodeRequired);
+        const actualErrorMessage = await checkoutPage.getErrorMessageInfo();
+        console.log('⚡ actual error message is ', actualErrorMessage);
+        await expect(actualErrorMessage).toBe(errorPostalCodeRequired);
     });
 });
 

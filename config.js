@@ -51,6 +51,7 @@ export const backpackInfo = {
     descriptionOfProductBackpack : "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.",
     priceOfProductBackpack : "$29.99",
     }
+export const imgOfProductBackpack = '/static/media/sauce-backpack-1200x1500.0a0b85a3.jpg';
 
 // checkout page:
 export const firstNameInput = '[data-test="firstName"]';

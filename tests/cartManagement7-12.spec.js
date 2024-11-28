@@ -14,20 +14,18 @@ import {
     productPageUrl,
     removeButtonOnProductPage,
     backpackInfo,
-           
-} from '../config';
+    } from '../config';
 
 test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-   // await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
+    // await page.goto('https://www.saucedemo.com/'); //delete this and uncomment next:
     await loginPage.openLoginPage();
 
     await expect(page).toHaveURL(loginPageUrl);      
     await expect (page.locator(usernameInput)).toBeEnabled();
     await loginPage.login(standardUser, password);
  });
-
 
 test('SCENARIO: 7.  User should see the added product in their cart.', async ({ page }) => {
     const inventoryPage = new InventoryPage(page);
@@ -71,13 +69,13 @@ test('SCENARIO: 8. User should see the cart icon update accordingly when adding 
     });
     
     await test.step('WHEN: when user cklicks on "add to cart" button for a backpack', async () => {
-      await inventoryPage.addToCartBackpackCklick();   
+        await inventoryPage.addToCartBackpackCklick();   
     });
     
     await test.step('THEN: user sees that there is "1" product near the car item is displayed', async () => {
-       const actualQuantityOfProducts = await inventoryPage.getCartIconQuantityProducts();
-       console.log('quantity of actual added products is: ', actualQuantityOfProducts);
-       expect(actualQuantityOfProducts).toBe("1");
+        const actualQuantityOfProducts = await inventoryPage.getCartIconQuantityProducts();
+        console.log('quantity of actual added products is: ', actualQuantityOfProducts);
+        expect(actualQuantityOfProducts).toBe("1");
     });
 });
 
@@ -90,7 +88,7 @@ test('SCENARIO: 9. User should be able to remove the added product on the cart p
     });
     
     await test.step('WHEN: when user cklicks on "add to cart" button for a backpack', async () => {
-      await inventoryPage.addToCartBackpackCklick();   
+       await inventoryPage.addToCartBackpackCklick();   
     });
     
     await test.step('AND: user goes to the cart page', async () => {
@@ -117,10 +115,10 @@ test('SCENARIO: 10. User should be able to remove the added product from cart on
     });
     
     await test.step('WHEN: when user cklicks on "add to cart" button for a backpack', async () => {
-      await inventoryPage.addToCartBackpackCklick();   
-      const actualQuantityOfProducts = await inventoryPage.getCartIconQuantityProducts();
-      console.log('✅ quantity of actual added products is: ', actualQuantityOfProducts);
-      expect(actualQuantityOfProducts).toBe("1");
+       await inventoryPage.addToCartBackpackCklick();   
+       const actualQuantityOfProducts = await inventoryPage.getCartIconQuantityProducts();
+       console.log('✅ quantity of actual added products is: ', actualQuantityOfProducts);
+       expect(actualQuantityOfProducts).toBe("1");
     });
        
     await test.step('AND: User clicks "Remove" button on the inventory page', async () => {

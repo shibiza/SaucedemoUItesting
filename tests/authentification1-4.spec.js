@@ -7,12 +7,15 @@ import {
     inventoryPageUrl,
     lockedOutUser,
     usernameInput,
+    loginButton,
     standardUser,
     password,
     errorMessageLocator,
     errorLoginMessage,
     errorLockedOutUserMessage,
-} from '../config';
+    burgerMenue,
+    cartIcon,
+    } from '../config';
 
 test('SCENARIO: 1. User should be able to log in with standard user given the correct credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -29,6 +32,8 @@ test('SCENARIO: 1. User should be able to log in with standard user given the co
     await test.step('THEN: user is redirected to the inventory page', async () => {
         await expect(page).toHaveURL(inventoryPageUrl);
         await expect(page).not.toHaveURL(loginPageUrl);
+        await expect (page.locator(burgerMenue)).toBeEnabled();
+        await expect (page.locator(cartIcon)).toBeEnabled();
     });
 });
 
@@ -49,6 +54,7 @@ test('SCENARIO: 2. User should not be able to access the e-shop inventory withou
     await test.step('THEN: user is on login page and sees Error message', async () => {
         await expect(page).toHaveURL(loginPageUrl);
         await expect(page).not.toHaveURL(inventoryPageUrl);
+        await expect (page.locator(errorMessageLocator)).toBeEnabled();
         await expect(page.locator(errorMessageLocator)).toHaveText(errorLoginMessage);
     });
 });
@@ -66,6 +72,8 @@ test('SCENARIO: 3. User whose access is denied (locked_out_user) should not be a
 
     await test.step('THEN: user is still on login page', async () => {
         await expect(page).toHaveURL(loginPageUrl);
+        await expect(page).not.toHaveURL(inventoryPageUrl);
+        await expect (page.locator(errorMessageLocator)).toBeEnabled();
         await expect(page.locator(errorMessageLocator)).toHaveText(errorLockedOutUserMessage);
     });
 });
@@ -81,8 +89,6 @@ test('SCENARIO: 4. User should be logged out once Logout button is pressed', asy
     });
 
     await test.step('WHEN: in burger menue user presses logout button', async () => {
-       //polymorphism
-    //    await inventoryPage.assertBurgerMenuHasThreeLines();
         await inventoryPage.openBurgerMenue();
         await inventoryPage.logoutClick();
     });
@@ -90,6 +96,6 @@ test('SCENARIO: 4. User should be logged out once Logout button is pressed', asy
     await test.step('THEN: user is redirected to the login page', async () => {
       await expect(page).toHaveURL(loginPageUrl);
       await expect(page).not.toHaveURL(inventoryPageUrl);
+      await expect (page.locator(loginButton)).toBeEnabled();
     });
 });
-
