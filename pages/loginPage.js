@@ -9,14 +9,20 @@ import {
     } from '../config';
 
 class LoginPage extends BasePage {
+  #page;
+  #usernameInput;
+  #passwordInput;
+  #loginButton;
+  #errorMessage;
   
   constructor(page) {
     super(page);
+    this.#page = page;
     this.loginPageUrl = loginPageUrl;
-    this.usernameInput = page.locator(usernameInput);
-    this.passwordInput = page.locator(passwordInput);
-    this.loginButton = page.locator(loginButton);
-    this.errorMessage = page.locator(errorMessageLocator);
+    this.#usernameInput = page.locator(usernameInput);
+    this.#passwordInput = page.locator(passwordInput);
+    this.#loginButton = page.locator(loginButton);
+    this.#errorMessage = page.locator(errorMessageLocator);
   }
 
   async openLoginPage() {
@@ -24,13 +30,13 @@ class LoginPage extends BasePage {
 }
 
   async login(username, password) {
-    await this.usernameInput.fill(username);
-    await this.passwordInput.fill(password);
-    await this.clickElement(this.loginButton);
+    await this.#usernameInput.fill(username);
+    await this.#passwordInput.fill(password);
+    await this.clickElement(this.#loginButton);
   }
 
   async isErrorMessageVisible() {
-    return await this.errorMessage.isVisible();
+    return await this.#errorMessage.isVisible();
   }
 }
 

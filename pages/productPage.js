@@ -7,12 +7,16 @@ import {
     } from '../config';
 
 class ProductPage extends BasePage {
-   
+    #page;
+    #removeButtonOnProductPage;
+    #cartIcon;
+
     constructor(page) {
         super(page);
+        this.#page = page;
         this.productPageUrl = productPageUrl;
-        this.cartIcon = page.locator(cartIcon);
-        this.removeButtonOnProductPage = page.locator(removeButtonOnProductPage);
+        this.#cartIcon = page.locator(cartIcon);
+        this.#removeButtonOnProductPage = page.locator(removeButtonOnProductPage);
     }
 
     async openProductPage() {
@@ -20,11 +24,11 @@ class ProductPage extends BasePage {
     }
 
     async removeButtonClick(){
-        await this.clickElement(this.removeButtonOnProductPage);
+        await this.clickElement(this.#removeButtonOnProductPage);
     }
 
     async getCartIconQuantityProducts(){
-        return this.cartIcon.innerText();
+        return this.#cartIcon.innerText();
     }
 }
 

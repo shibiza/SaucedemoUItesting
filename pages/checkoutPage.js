@@ -21,15 +21,20 @@ import {
     } from '../config';
 
 class CheckoutPage extends BasePage {
+    #page;
+    #firstNameInput;
+    #lastNameInput;
+    #zipCodeInput;
    
     constructor(page) {
         super(page);
+        this.#page = page;
         this.checkoutPageStepOneUrl = checkoutPageStepOneUrl;
         this.checkoutPageStepTwoUrl = checkoutPageStepTwoUrl;
         this.checkoutPageCompleteUrl = checkoutPageCompleteUrl;
-        this.firstNameInput = page.locator(firstNameInput);
-        this.lastNameInput = page.locator(lastNameInput);
-        this.zipCodeInput = page.locator(zipCodeInput);
+        this.#firstNameInput = page.locator(firstNameInput);
+        this.#lastNameInput = page.locator(lastNameInput);
+        this.#zipCodeInput = page.locator(zipCodeInput);
         this.continueCheckoutButton = page.locator(continueCheckoutButton);
         this.quantityOfProducts = page.locator(quantityOfProducts);
         this.nameOfProduct = page.locator(nameOfProduct);
@@ -44,9 +49,9 @@ class CheckoutPage extends BasePage {
     }
 
     async checkoutInputCredentials(firstName,lastName, zipCode) {
-        await this.firstNameInput.fill(firstName);
-        await this.lastNameInput.fill(lastName);
-        await this.zipCodeInput.fill(zipCode);
+        await this.#firstNameInput.fill(firstName);
+        await this.#lastNameInput.fill(lastName);
+        await this.#zipCodeInput.fill(zipCode);
         await this.clickElement(this.continueCheckoutButton);
     }
     async finishButtonCklick() {

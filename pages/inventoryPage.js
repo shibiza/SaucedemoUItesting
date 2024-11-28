@@ -18,18 +18,24 @@ import {
     } from '../config';
 
 class InventoryPage extends BasePage {
-   
+    #page;
+    #burgerMenue;
+    #logoutButton;
+    #cartIcon;
+    #removeButton;
+
     constructor(page) {
         super(page);
+        this.#page = page;
         this.inventoryPageUrl = inventoryPageUrl;
-        this.burgerMenue = page.locator(burgerMenue); 
-        this.logoutButton = page.locator(logoutButton);
-        this.cartIcon = page.locator(cartIcon);
+        this.#burgerMenue = page.locator(burgerMenue); 
+        this.#logoutButton = page.locator(logoutButton);
+        this.#cartIcon = page.locator(cartIcon);
         this.productSearchContainer = page.locator(productSearchContainer);
         this.itemNames = page.locator(itemName);
         this.itemPrices = page.locator(itemPrice);
         this.addToCartBackpackButton = page.locator(addToCartBackpackButton);
-        this.removeButton = page.locator(removeButton);
+        this.#removeButton = page.locator(removeButton);
         this.productNameBackpack = page.locator(productNameBackpack);
             //scenario #6:
         this.productName = page.locator(productName);
@@ -45,11 +51,11 @@ class InventoryPage extends BasePage {
     // polymorthism:  ❤️
     async openBurgerMenue() {
         //await this.burgerMenue.click(); -instead of usung this I override parents method:
-        await this.clickElement(this.burgerMenue);
+        await this.clickElement(this.#burgerMenue);
     }
 
      async logoutClick() {
-        await this.clickElement(this.logoutButton);
+        await this.clickElement(this.#logoutButton);
     }
 
     async filteringDropdownCklick(){
@@ -57,11 +63,11 @@ class InventoryPage extends BasePage {
     }
 
     async cartIconClick(){
-        await this.clickElement(this.cartIcon);
+        await this.clickElement(this.#cartIcon);
     }
 
     async removeButtonCklick(){
-        await this.clickElement(this.removeButton);
+        await this.clickElement(this.#removeButton);
     }
 
     async navigateToProductPage(){
@@ -87,7 +93,7 @@ class InventoryPage extends BasePage {
         await this.clickElement(this.addToCartBackpackButton);
     } 
     async getCartIconQuantityProducts(){
-        return this.cartIcon.innerText();
+        return this.#cartIcon.innerText();
     }
 }
 

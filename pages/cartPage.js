@@ -11,15 +11,19 @@ import {
     } from '../config';
 
 class CartPage extends BasePage {
-   
+    #page;
+    #checkoutButton;
+    #removeButton;
+
     constructor(page) {
         super(page);
+        this.#page = page;
         this.cartPageUrl = cartPageUrl;
-        this.checkoutButton = page.locator(checkoutButton);
+        this.#checkoutButton = page.locator(checkoutButton);
         this.addedProductName = page.locator(addedProductName);
         this.addedProductDescription = page.locator(addedProductDescription);
         this.addedProductPrice = page.locator(addedProductPrice);
-        this.removeButton = page.locator(removeButton);
+        this.#removeButton = page.locator(removeButton);
         this.continueShopping = page.locator(continueShopping);     
     }
 
@@ -29,7 +33,7 @@ class CartPage extends BasePage {
 
     // polymorthism:  ❤️
     async checkoutClick() {
-        await this.clickElement(this.checkoutButton);
+        await this.clickElement(this.#checkoutButton);
     }
     async continueShoppingClick() {
         await this.clickElement(this.continueShopping);
@@ -47,7 +51,7 @@ class CartPage extends BasePage {
 
     //scenario #9:
     async removeButtonCklick(){
-        await this.clickElement(this.removeButton);
+        await this.clickElement(this.#removeButton);
     }
 }
 
