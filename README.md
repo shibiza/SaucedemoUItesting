@@ -1,18 +1,22 @@
-Test Report available at [GitHub Pages](https://shibiza.github.io/SaucedemoUItesting/)
+🎭 Test Report available at [GitHub Pages](https://shibiza.github.io/SaucedemoUItesting/)
 
-🛠 Automated UI Test Suite for Saucedemo
+🛠 **Automated UI Test Suite for Saucedemo**
 
 This repository contains an automated UI test suite for regression testing of the Saucedemo website using Playwright.
 
 The tests are structured in the Given, When, Then format, following the Behavior-Driven Development (BDD) approach. The suite tests various functionalities of the website to ensure everything works correctly for end-users.
 
-My project is developed using the Page Object Model (POM) framework, which helps in creating an abstraction layer for web elements to enhance maintainability and reusability. Additionally, the project is structured according to the four core principles of Object-Oriented Programming (OOP): Encapsulation, Abstraction, Inheritance, and Polymorphism, ensuring better code organization, flexibility, and scalability.
+✅ **Key Features**
 
-🌐 Website Under Test:
+- **Page Object Model (POM)**: The project is built using the **POM framework**, which creates an abstraction layer for web elements. This enhances maintainability and reusability, making the tests easier to manage and update.
+
+- **Object-Oriented Programming (OOP)**: The code adheres to the four core principles of OOP: **Encapsulation**, **Abstraction**, **Inheritance**, and **Polymorphism**, ensuring better code organization, flexibility, and scalability.
+
+🌐 **Website Under Test:**
 
 Saucedemo (https://www.saucedemo.com/)
 
-📝 Test Scenarios
+📝 **Test Scenarios**
 
 The test scenarios cover the following areas:
 
@@ -54,7 +58,7 @@ The test scenarios cover the following areas:
 
 15. User should get notified after placing a successful order.
 
-🏃‍♂️ Running the Tests
+🏃‍♂️ **Running the Tests**
 
 To run the test suite locally, follow these steps:
 
@@ -94,7 +98,7 @@ npx playwright test tests/auth --project=chromium
 
 Viewing the Test Report: The test results will be available on GitHub Pages.
 
-🔧 CI/CD Pipeline
+🔧 **CI/CD Pipeline**
 
 The tests are set up to run in a CI/CD pipeline, and they can be triggered manually or on a scheduled basis:
 
