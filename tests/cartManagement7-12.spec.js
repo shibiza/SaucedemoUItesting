@@ -13,13 +13,9 @@ import {
     password,
     productPageUrl,
     removeButtonOnProductPage,
+    backpackInfo,
            
 } from '../config';
-
-// Variables for the backpack
-const nameOfBackpack = 'Sauce Labs Backpack';
-const descriptionOfProductBackpack = 'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.';
-const priceOfProductBackpack = '$29.99';
 
 test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -61,9 +57,9 @@ test('SCENARIO: 7.  User should see the added product in their cart.', async ({ 
             price: actualPrice,
         });
 
-        expect(actualName).toBe(nameOfBackpack);
-        expect(actualDescription).toBe(descriptionOfProductBackpack);
-        expect(actualPrice).toBe(priceOfProductBackpack);
+        expect(actualName).toBe(backpackInfo.nameOfBackpack);
+        expect(actualDescription).toBe(backpackInfo.descriptionOfProductBackpack);
+        expect(actualPrice).toBe(backpackInfo.priceOfProductBackpack);
     });
 });
 

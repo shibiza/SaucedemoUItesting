@@ -4,6 +4,16 @@ import {
     checkoutPageStepOneUrl,
     checkoutPageStepTwoUrl,
     checkoutPageCompleteUrl,
+    firstNameInput,
+    lastNameInput,
+    zipCodeInput,
+    continueCheckoutButton,
+    quantityOfProducts,
+    nameOfProduct,
+    descriptionOfProduct,
+    priceOfProduct,
+    paymentInfoLocator,
+    shippingInfoLocator,
     
     } from '../config';
 
@@ -14,21 +24,61 @@ class CheckoutPage extends BasePage {
         this.checkoutPageStepOneUrl = checkoutPageStepOneUrl;
         this.checkoutPageStepTwoUrl = checkoutPageStepTwoUrl;
         this.checkoutPageCompleteUrl = checkoutPageCompleteUrl;
-      //  this. = page.locator();
+        this.firstNameInput = page.locator(firstNameInput);
+        this.lastNameInput = page.locator(lastNameInput);
+        this.zipCodeInput = page.locator(zipCodeInput);
+        this.continueCheckoutButton = page.locator(continueCheckoutButton);
+        this.quantityOfProducts = page.locator(quantityOfProducts);
+        this.nameOfProduct = page.locator(nameOfProduct);
+        this.descriptionOfProduct = page.locator(descriptionOfProduct);
+        this.priceOfProduct = page.locator(priceOfProduct);
+        this.paymentInfoLocator = page.locator(paymentInfoLocator);
+        this.shippingInfoLocator = page.locator(shippingInfoLocator);
     }
 
     async openCheckoutPageStepOneUrl() {
         await this.openUrl(checkoutPageStepOneUrl);
     }
 
-    // async removeButtonClick(){
-    //     await this.clickElement(this.removeButtonOnProductPage);
-    // }
+    async checkoutInputCredentials(firstName,lastName, zipCode) {
+        await this.firstNameInput.fill(firstName);
+        await this.lastNameInput.fill(lastName);
+        await this.zipCodeInput.fill(zipCode);
+        await this.clickElement(this.continueCheckoutButton);
+    }
+   
+    // async getProductInfo() {
+    //     // Wait for all elements to load and retrieve their inner text
+    //     const quantity = await this.quantityOfProducts.innerText();
+    //     const name = await this.nameOfProduct.innerText();
+    //     const description = await this.descriptionOfProduct.innerText();
+    //     const price = await this.priceOfProduct.innerText();
 
-    // async getCartIconQuantityProducts(){
-    //     return this.cartIcon.innerText();
+    //     return {       // Return all the data as an object
+    //         quantity,
+    //         name,
+    //         description,
+    //         price
+    //     };
     // }
+    async getProductInfo() {
+        // Return locators instead of inner text, so I can use them in assertions toBeVisible() and toHaveText()
+        return {
+            quantity: this.quantityOfProducts,
+            name: this.nameOfProduct,
+            description: this.descriptionOfProduct,
+            price: this.priceOfProduct
+        };
+    }
 
+    async getPaymentInfo() {
+        // const paymentInfo = await this.paymentInfoLocator.innerText();
+        // const shippingInfo = await this.shippingInfoLocator.innerText()
+        return {
+            paymentInfo: this.paymentInfoLocator,
+            shippingInfo: this.shippingInfoLocator,
+        };
+    }
 }
 
 module.exports = CheckoutPage;

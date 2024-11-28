@@ -44,10 +44,35 @@ export const addedProductName = '[data-test="item-4-title-link"]';
 export const addedProductDescription = '[data-test="inventory-item-desc"]'; 
 export const addedProductPrice = '[data-test="inventory-item-price"]'; 
 
-//product page (backpack):
+// product page (backpack):
 export const removeButtonOnProductPage = '[data-test="remove"]';
+export const backpackInfo = {
+    nameOfBackpack : "Sauce Labs Backpack",
+    descriptionOfProductBackpack : "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.",
+    priceOfProductBackpack : "$29.99",
+    }
 
 // checkout page:
+export const firstNameInput = '[data-test="firstName"]';
+export const lastNameInput = '[data-test="lastName"]';
+export const zipCodeInput = '[data-test="postalCode"]';
+export const continueCheckoutButton = '[data-test="continue"]';
+export const firstNameBuyer = 'Nat';
+export const lastNameBuyer = 'Sam';
+export const zipCodeBuyer = '90210';
+
+export const paymentInfoLocator = '[data-test="payment-info-value"]';
+export const shippingInfoLocator = '[data-test="shipping-info-value"]';
+
+export const paymentInformation = {
+    card : "SauceCard #31337",
+    shipping : "Free Pony Express Delivery!",
+    }
+export const quantityOfProducts = '[data-test="item-quantity"]';
+export const nameOfProduct = '[data-test="item-4-title-link"]';
+export const descriptionOfProduct ='[data-test="inventory-item-desc"]';
+export const priceOfProduct = '[data-test="inventory-item-price"]';
+
 
 //texts:
 export const errorLoginMessage = "Epic sadface: You can only access '/inventory.html' when you are logged in.";
