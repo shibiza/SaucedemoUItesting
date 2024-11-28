@@ -26,7 +26,6 @@ class ProductPage extends BasePage {
     async getCartIconQuantityProducts(){
         return this.cartIcon.innerText();
     }
-
 }
 
 module.exports = ProductPage;

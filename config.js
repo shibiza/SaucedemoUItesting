@@ -1,8 +1,11 @@
-//links:
+//urls:
 export const loginPageUrl = 'https://www.saucedemo.com/';
 export const inventoryPageUrl = 'https://www.saucedemo.com/inventory.html';
 export const cartPageUrl = 'https://www.saucedemo.com/cart.html';
 export const productPageUrl = 'https://www.saucedemo.com/inventory-item.html?id=4';
+export const checkoutPageStepOneUrl = 'https://www.saucedemo.com/checkout-step-one.html';
+export const checkoutPageStepTwoUrl = 'https://www.saucedemo.com/checkout-step-two.html';
+export const checkoutPageCompleteUrl = 'https://www.saucedemo.com/checkout-complete.html';
 
 //users and password:
 export const standardUser = "standard_user";
@@ -43,6 +46,8 @@ export const addedProductPrice = '[data-test="inventory-item-price"]';
 
 //product page (backpack):
 export const removeButtonOnProductPage = '[data-test="remove"]';
+
+// checkout page:
 
 //texts:
 export const errorLoginMessage = "Epic sadface: You can only access '/inventory.html' when you are logged in.";

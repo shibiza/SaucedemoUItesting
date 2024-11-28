@@ -8,7 +8,6 @@ import {
     addedProductPrice,
     removeButton,
     continueShopping,
-    
     } from '../config';
 
 class CartPage extends BasePage {
@@ -21,8 +20,7 @@ class CartPage extends BasePage {
         this.addedProductDescription = page.locator(addedProductDescription);
         this.addedProductPrice = page.locator(addedProductPrice);
         this.removeButton = page.locator(removeButton);
-        this.continueShopping = page.locator(continueShopping);
-           
+        this.continueShopping = page.locator(continueShopping);     
     }
 
     async openCartPage() {
